@@ -21,7 +21,7 @@ Crear ambiente virtual
 3. Activar el ambiente virtual ``` . venv/bin/activate ```
 4. "(venv) jcamacaro@Notebook-G3:07-intro-flask (main)$ " con el "(venv)" me indicara que ya active mi ambiente virtual
 5. Instalar flask ``` pip3 install Flask ```
-6. hay que indicarle a Flask cual es el archivo que tiene que ejecutar cuando levantemos la app ``` export FLASK_APP=NAME_FILE.py ``` ``` export FASK_APP=holamundo.py ```
+6. hay que indicarle a Flask cual es el archivo que tiene que ejecutar cuando levantemos la app ``` export FLASK_APP=NAME_FILE.py ``` ``` export FLASK_APP=holamundo.py ```
 7. Levantar server de flask con ``` flask run ```
 8. poner el env de flask en development para que haga el reload de los cambios enlos archivos ``` export FLASK_ENV=development ```
 9. salir del ambiente virtual ``` deactivate ```

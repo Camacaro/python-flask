@@ -1,7 +1,22 @@
 from flask import Flask, request, url_for, redirect, abort, render_template
+import mysql.connector
 
 # __name__ es el nombre del archivo en este caso es holamundo
 app = Flask(__name__)
+
+midb = mysql.connector.connect(
+  host='localhost',
+  user='root',
+  password='password',
+  database='prueba'
+)
+
+# Vamos a cambiar la configuracion por defecto del cursor
+# ya que con el fetall esto trae una lista de tuplas y para 
+# acceder a sus valores hay que hacerlo por indice, lo vamos 
+# a cambiar para poder acceder a su nombre y no a su indice 
+# dictionary=True
+cursor = midb.cursor(dictionary=True)
 
 # curl -X GET http://localhost:5000
 @app.route('/')
@@ -79,3 +94,17 @@ def testJson():
 @app.route('/home', methods=['GET'])
 def home():
   return render_template('home.html', mensaje='Hola Mundo')
+
+
+@app.route('/db', methods=['GET'])
+def getUsers():
+  cursor.execute('select * from Usuario')
+  usuarios = cursor.fetchall()
+  #  Esto devuelve una lista que contiene tuplas
+  # [(1, 'chanchito@faliz.com', 'fchanchito', None)]
+
+  # con la configuracion que hicimos en cursor ahora retorna un diccionario
+  # una lista de diccionario
+  # [{'id': 1, 'correo': 'chanchito@faliz.com', 'usuario': 'fchanchito', 'edad': None}]
+  return render_template('usuarios.html', usuarios=usuarios)
+
