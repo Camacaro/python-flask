@@ -25,3 +25,18 @@ Crear ambiente virtual
 7. Levantar server de flask con ``` flask run ```
 8. poner el env de flask en development para que haga el reload de los cambios enlos archivos ``` export FLASK_ENV=development ```
 9. salir del ambiente virtual ``` deactivate ```
+
+#### Tips - Package
+1. Estructura de proyecto
+  ```
+  | -----------<Folder>Nombre del proyecto
+  | | --------- <Folder> Entorno
+  | | --------- <Folder> Proyecto
+  ``` 
+2. Conocer las dependencias instaladas
+  ```pip freeze```
+3. siempre es conveniente generar el archivo requirements.txt
+  ``` pip freeze > requirements.txt ```
+  Este archivo deberá actualizarse siempre que instalemos o desinstalemos alguna dependencia.
+  De igual manera, si queremos instalar dependencias a partir de dicho archivo, sepamos que podemos hacerlo. Basta con ejecutar el siguiente comando.
+  ``` pip install -r requirements.txt ```
