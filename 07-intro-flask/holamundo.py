@@ -108,3 +108,19 @@ def getUsers():
   # [{'id': 1, 'correo': 'chanchito@faliz.com', 'usuario': 'fchanchito', 'edad': None}]
   return render_template('usuarios.html', usuarios=usuarios)
 
+
+@app.route('/crear-usuario', methods=['GET', 'POST'])
+def createUser():
+  if request.method == 'POST':
+    usuario = request.form['usuario']
+    edad = request.form['edad']
+    correo = request.form['correo']
+    sql = 'insert into Usuario (usuario, correo, edad) values (%s, %s, %s)'
+    values = (usuario, correo, edad)
+    cursor.execute(sql, values)
+    midb.commit()
+    nombreFuncion = 'getUsers'
+    path = url_for(nombreFuncion)
+    return redirect(path)
+
+  return render_template('form-user.html')
